@@ -68,44 +68,6 @@
     }
 
 
-    // Textarea Auto Resize
-    var hiddenDiv = $('.hiddendiv').first();
-    if (!hiddenDiv.length) {
-      hiddenDiv = $('<div class="hiddendiv common"></div>');
-      $('body').append(hiddenDiv);
-    }
-    var text_area_selector = '.materialize-textarea';
-
-    function textareaAutoResize($textarea) {
-      hiddenDiv.text($textarea.val() + '\n');
-      var content = hiddenDiv.html().replace(/\n/g, '<br>');
-      hiddenDiv.html(content);
-
-      // When textarea is hidden, width goes crazy.
-      // Approximate with half of window size
-
-      if ($textarea.is(':visible')) {
-        hiddenDiv.css('width', $textarea.width());
-      }
-      else {
-        hiddenDiv.css('width', $(window).width()/2);
-      }
-
-      $textarea.css('height', hiddenDiv.height());
-    }
-
-    $(text_area_selector).each(function () {
-      var $textarea = $(this);
-      if ($textarea.val().length) {
-        textareaAutoResize($textarea);
-      }
-    });
-
-    $('body').on('keyup keydown', text_area_selector, function () {
-      textareaAutoResize($(this));
-    });
-
-
     // File Input Path
     $('.file-field').each(function() {
       var path_input = $(this).find('input.file-path');
